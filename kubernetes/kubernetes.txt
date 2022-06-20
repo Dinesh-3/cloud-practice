@@ -1,0 +1,59 @@
+To start minikube server
+1. minikube start
+2. minikube start --vm-driver=hyperkit (To specify the virtual machine to use)
+3. minikube status (To get minikube cluster status)
+4. minikube stop
+5. minikube dashboard
+
+Kubectl
+1. kubectl version (To get kubectl version)
+2. kubectl get all (to get all info)
+3. kubectl get pod | nodes | services or service | replicaset | deployment | configmap
+
+GET Deployment
+1. kubectl get deployment
+2. kubectl get deployment deploymentName -o yaml
+3. kubectl create deployment nginx-server --image=nginx
+4. kubectl edit deployment nginx-server (opens yml config file) 
+5. kubectl delete deployment nginx-server
+6. kubectl delete -f ./deployment.yml -n namespace (delete deployment with deployment file)
+7. kubectl apply -f ./deployment.yml (if deployment already exist it will update the config else will create new deployment)
+8. kubectl apply -f ./deployment.yml --namespace={name} (with namspace)
+9. kubectl apply -f ./ (Applies all the config yml files in one go)
+10. kubectl describe deployment api-gateway-app
+
+Expose Port to Host Machine
+1. minikube service serviceName
+2. minikube service list (to get all exposed services)
+
+POD
+1. kubectl get pod -o wide
+2. kubectl get pod -A
+3. kubectl get pod --watch
+4. kubectl describe pod nginx-server
+5. kubectl describe pod
+6. kubectl logs nginx-server-64cd7677c6-tbgld (-f for follow)
+7. kubectl exec -it nginx-server-64cd7677c6-tbgld -- bin/bash
+
+Namespaces (Virtual cluster inside kubernetes clustor)
+1. kubectl create namespace nameSpace
+2. kubectl get namespaces (To get all namespaces)
+3. kubectl api-resource --namespaced=true (In a namespace)
+4. kubectl api-resource --namespaced=falseV (Not in a namespace)
+5. kubectl get pods -n my-namespace (Get Pods with provided namespace)
+
+Ingress USED TO Expose host with custom DNS
+1. minikube addons list (to list all addons)
+2. minikube addons enable ingress (To add ingress)
+3. kubectl get ingress (To get ingress)
+
+Stateless Application (application which don't need any data or state ex python, java, spring boot, django, nodejs etc...)
+
+Stateful Application (application which needs data like mongodb, mysql, postgres etc...)
+
+Volumes:
+1. storageClass is used to create dynamic volumes 
+
+Secret:
+Secret are stored in base64 first we need apply secret config. then only we need to apply deployment configs. This order is must when we use secret
+1. $ echo -n 'dinesh' | base64 (Convert to base64 encoded format in terminal)

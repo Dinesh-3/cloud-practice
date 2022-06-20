@@ -1,0 +1,88 @@
+1. docker pull imageName
+2. docker run imageName (pulls image also run)
+3. docker images
+4. docker ps (to get running container)
+5. docker ps -a (to get running also stopped containers)
+6. docker start containerId (To run stopped Container)
+7. docker start -i containerId (to get shell)
+8. docker exec -it containerId bash (To open interactive mode with bash shell on running container)
+9. docker exec -it -u test containerId bash (with specified user)
+10. docker build -t react-app . (build Docker file in current directory)
+11. docker build -f Dockerfile.dev .
+12. docker build -t react-app:1 . (add tags)
+13. docker image tag react-app:latest react-app:1 (add tag for existing image)
+14. docker image remove react-app:1 (remove tag)
+15. docker image tag bo3 react-app:latest (adding latest tag to last build)
+16. 
+17. docker run -it react-app sh (or bash to make shell session)
+18. docker run -d -p 80:3000 --name react-1 react-app
+19. docker history react-app (to get build history)
+
+SAVE IMAGE IN DOCKER HUB
+docker login
+docker push react-app:1
+
+SAVE DOCKER image in zip file
+docker image save -o react-app-image-1.tar react-app:1
+docker image load -i react-app-image-1.tar (to load saved image)
+
+RUN IMAGE CONTAINER
+1. docker run -d react-app (run container in detached mode)
+2. docker run --name own-name -d react-app (add own name for running container)
+
+GET LOGS
+1. docker logs containerId
+2. docker logs -f containerId (follow logs in terminal)
+3. docker logs -n 5 -t containerId (get last 5 line with time stamp)
+
+EXECUTING BASH Command on running container
+1. docker exec containerNameOrId ls
+2. docker exec -it comtainerId sh (opening shell session terminal for running container)
+
+docker stop containerIdOrName (stopping running container)
+docker start containerIdOrName (starting a stopped container)
+
+REMOVE DOCKER IMAGES
+1. docker image prune
+2. docker image rm imageName
+3. docker rmi imageName (short cut)
+
+REMOVE CONTAINER
+1. docker container rm containerIdOrName
+2. docker container prune (remove all stopped containers)
+3. docker rm -f containerIdOrName (it forcely removes running container)
+
+Persisting data using volumes
+1. docker volume create app-data
+2. docker volume inspect app-data
+3. docker run -d -p 4000:3000 -v app-data:/app/data react-app (adding volume while running a new container .By default it will create file using root user to prevent this we need to create directory on Dockerfile using RUN mkdir)
+
+Copying FILES
+docker files to host machine
+1. docker cp containerId:/app/data/file.txt . (absolute path file or directory space host path to store)
+Host Files to container
+1. docker cp /home/Downloads/.env containerId:/app 
+
+Hot Reloading Using volume
+1. docker run -d -p 5000:3000 -v $(pwd):/app --name react-1 react-app
+2. docker run -d -p 5000:3000 -v /app/node_modules -v $(pwd):/app --name react-1 react-app -> To tell do not map this docker directory to host machine directory, take that folder from docker.
+ 
+
+DOCKER_COMPOSE
+1. docker-compose build
+2. docker-compose build --no-cache (without using any cache )
+3. docker-compose up --build
+4. docker-compose up -d (to run in background)
+5. docker-compose down (to stop all container)
+
+DOCKERFILE
+FROM
+ENV
+WORKDIR
+EXPOSE
+COPY
+USER
+ADD
+CMD
+RUN
+ENTRYPOINT

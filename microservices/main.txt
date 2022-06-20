@@ -1,0 +1,46 @@
+Application
+1. Independent deployment
+2. Team with specific service
+3. Independent scalable
+4. We go with Different languages for services
+5. Isolated os resources for that specific service
+
+
+Consideration:
+1. Monolith to microservice splitting size It's not too small. Not NanoService
+2. Separation of concern
+3. Creating common libraries for all micro service usage
+4. Security check
+5. Isolated service
+6. Design docs for microservice
+
+Components:
+1. Service registry
+2. Service discovery
+3. Circute Breaker
+4. Api gateway
+5. Zipkin
+6. Distributed tracing
+7. Monitoring and Health check
+8. Rollout and rollback on error
+9. managing configuration properties
+
+Communication:
+1. Using HTTP 
+2. Message Queue
+3. Fanout and Fanin
+
+
+Spring Cloud:
+1. Spring cloud config
+2. Spring Cloud for Cloud providers
+
+Testing;
+1. Unit testing
+2. Services communication Testing
+3. Api testing
+
+Deployment:
+1. Development
+2. Staging
+3. Production
